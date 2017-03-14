@@ -7,11 +7,7 @@
 
 include_recipe 'proftpd-ii'
 
-package 'proftpd-mod-mysql'
+# Add postgres support to proftpd
+package 'proftpd-mod-pgsql'
+proftpd_module 'pgsql'
 
-proftpd_module 'mysql'
-
-proftpd_vhost 'galaxy' do
-  default_server true
-  enable true
-end
