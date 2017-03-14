@@ -5,6 +5,8 @@
 # Copyright (c) 2017 The Authors, All Rights Reserved.
 #
 
-directory 'path' do
-	name 'path'
-end
+include_recipe 'proftpd-ii'
+
+package 'proftpd-mod-mysql'
+
+proftpd_module 'mysql'
