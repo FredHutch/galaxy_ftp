@@ -23,11 +23,11 @@ template "#{node['proftpd-ii']['conf_dir']}/sites-available/galaxy-ftp.conf" do
     'db_user_pw' => node['galaxy_ftp']['db_user_pw']
   )
   source 'vhost/galaxy-ftp.erb'
-  notifies :create, "link[#{node['proftpd-ii']['conf_dir']}/sites-available/galaxy-ftp.conf]", :immediate
+  notifies :create, "link[#{node['proftpd-ii']['conf_dir']}/sites-enabled/galaxy-ftp.conf]", :immediate
 end
 
-link "#{node['proftpd-ii']['conf_dir']}/sites-available/galaxy-ftp.conf" do
-  to "#{node['proftpd-ii']['conf_dir']}/sites-enabled/galaxy-ftp.conf" 
+link "#{node['proftpd-ii']['conf_dir']}/sites-enabled/galaxy-ftp.conf" do
+  to "#{node['proftpd-ii']['conf_dir']}/sites-available/galaxy-ftp.conf" 
   link_type :symbolic
   action :nothing
 end
