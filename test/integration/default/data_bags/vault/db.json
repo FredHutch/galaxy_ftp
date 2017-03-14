@@ -1,0 +1,7 @@
+{
+  "id": "db",
+  "uri": "dbname@dbhost:dbport",
+  "user": "pgsql_user",
+  "user_pw": "password12345"
+}
+
