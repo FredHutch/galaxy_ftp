@@ -10,3 +10,8 @@ include_recipe 'proftpd-ii'
 package 'proftpd-mod-mysql'
 
 proftpd_module 'mysql'
+
+proftpd_vhost 'galaxy' do
+  default_server true
+  enable true
+end
