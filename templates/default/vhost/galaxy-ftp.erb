@@ -11,8 +11,8 @@ MaxInstances                    30
 # This user and group should be set to the actual user and group name which
 # matches the UID and GID you will specify later in the SQLNamedQuery.
 
-User                            nobody
-Group                           nogroup
+User                            <%= @galaxy_user %>
+Group                           <%= @galaxy_group %>
 DisplayConnect                  /etc/opt/local/proftpd_welcome.txt
 
 # Passive port range for the firewall
@@ -65,5 +65,5 @@ SQLNamedQuery                   GetUserSalt SELECT "(CASE WHEN SUBSTRING (passwo
 # Define a custom query for lookup that returns a passwd-like entry. Replace
 # 512s with the UID and GID of the user running the Galaxy server
 SQLUserInfo                     custom:/LookupGalaxyUser
-SQLNamedQuery                   LookupGalaxyUser SELECT "email, (CASE WHEN substring(password from 1 for 6) = 'PBKDF2' THEN substring(password from 38 for 69) ELSE password END) AS password2,512,512,'/home/nate/galaxy_dist/database/ftp/%U','/bin/bash' FROM galaxy_user WHERE email='%U'"
+SQLNamedQuery                   LookupGalaxyUser SELECT "email, (CASE WHEN substring(password from 1 for 6) = 'PBKDF2' THEN substring(password from 38 for 69) ELSE password END) AS password2,<%= @galaxy_uid %>,<%= @galaxy_gid %>,'<%= @galaxy_upload_dir %>/%U','/bin/bash' FROM galaxy_user WHERE email='%U'"
 

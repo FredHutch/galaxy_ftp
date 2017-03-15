@@ -1,0 +1,9 @@
+{
+  "id": "galaxy",
+  "user": "nobody",
+  "uid": "65536",
+  "group": "nogroup",
+  "gid": "65534",
+  "upload_dir": "/var/tmp"
+}
+
