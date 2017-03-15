@@ -17,21 +17,15 @@ galaxy_group = chef_vault_item(node['galaxy_ftp']['vault_name'], 'galaxy')['grou
 galaxy_gid = chef_vault_item(node['galaxy_ftp']['vault_name'], 'galaxy')['gid']
 galaxy_upload_dir = chef_vault_item(node['galaxy_ftp']['vault_name'], 'galaxy')['upload_dir']
 
-include_recipe 'proftpd-ii'
 
-# Add postgres support to proftpd
-package 'proftpd-mod-pgsql'
+package ['proftpd', 'proftpd-mod-pgsql']
 
-proftpd_module 'sql'
-proftpd_module 'sql_passwd'
-proftpd_module 'sql_postgres'
-#
-# Add vhost configuration from template
+# Add configuration from template
 
-template "#{node['proftpd-ii']['conf_dir']}/sites-available/galaxy-ftp.conf" do
-  owner node['proftpd-ii']['user']
-  group node['proftpd-ii']['group']
-  mode 0640
+template "/etc/proftpd/proftpd.conf" do
+  owner 'proftpd'
+  group 'root'
+  mode 0440
   variables(
     'db_uri' => db_uri,
     'db_user' => db_user,
@@ -42,12 +36,5 @@ template "#{node['proftpd-ii']['conf_dir']}/sites-available/galaxy-ftp.conf" do
     'galaxy_gid' => galaxy_gid,
     'galaxy_upload_dir' => galaxy_upload_dir
   )
-  source 'vhost/galaxy-ftp.erb'
-  notifies :create, "link[#{node['proftpd-ii']['conf_dir']}/sites-enabled/galaxy-ftp.conf]", :immediate
-end
-
-link "#{node['proftpd-ii']['conf_dir']}/sites-enabled/galaxy-ftp.conf" do
-  to "#{node['proftpd-ii']['conf_dir']}/sites-available/galaxy-ftp.conf" 
-  link_type :symbolic
-  action :nothing
+  source 'galaxy-ftp.erb'
 end
