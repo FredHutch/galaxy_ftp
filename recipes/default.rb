@@ -14,7 +14,10 @@ include_recipe 'proftpd-ii'
 
 # Add postgres support to proftpd
 package 'proftpd-mod-pgsql'
-proftpd_module 'pgsql'
+
+proftpd_module 'sql'
+proftpd_module 'sql_passwd'
+proftpd_module 'sql_postgres'
 #
 # Add vhost configuration from template
 

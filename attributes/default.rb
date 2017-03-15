@@ -1,3 +1,3 @@
 
-node.default['galaxy_ftp']['vault'] = 'vault'
+node.default['galaxy_ftp']['vault'] = 'galaxy_ftp'
 
