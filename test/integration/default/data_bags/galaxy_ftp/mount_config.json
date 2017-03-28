@@ -1,0 +1,8 @@
+{
+  "id": "mount_config",
+  "username": "mount_user",
+  "password": "cleartextpassword",
+  "domain": "somedomain",
+  "device": "//servername/path/to/location"
+}
+
