@@ -80,7 +80,7 @@ option_list = [
   'dir_mode=0755'
 ]
 
-mount galaxy_upload_dir do
+mount mount_config['mount_point'] do
   device mount_config['device']
   fstype 'cifs'
   options option_list.join(',')

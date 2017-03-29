@@ -3,6 +3,7 @@
   "username": "mount_user",
   "password": "cleartextpassword",
   "domain": "somedomain",
-  "device": "//servername/path/to/location"
+  "device": "//servername/path/to/location",
+  "mount_point": "/mnt/upload_dir"
 }
 
